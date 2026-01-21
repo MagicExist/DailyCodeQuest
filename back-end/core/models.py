@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.core.exceptions import ValidationError
 from django.db import models
 
 class UserManager(BaseUserManager):
@@ -44,3 +45,31 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
+class Challenge(models.Model):
+    title = models.CharField(
+        max_length=75,
+        unique=True
+    )
+    description = models.CharField(
+        max_length=500,
+        blank=True
+    )
+    conditions = models.JSONField(
+        default=list,
+        blank=True
+    )
+    image = models.ImageField(upload_to="challenge_images/") 
+
+    def clean(self):
+        """
+            Validate conditions only if provided.
+            No empty strings allowed.
+        """
+        super().clean()
+        if self.conditions:
+            for condition in self.conditions:
+                if not condition or not condition.strip():
+                    raise ValidationError({"conditions": "Empty conditions are not allowed."})
+    def __str__(self):
+        return self.title
