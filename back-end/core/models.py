@@ -73,3 +73,32 @@ class Challenge(models.Model):
                     raise ValidationError({"conditions": "Empty conditions are not allowed."})
     def __str__(self):
         return self.title
+
+class Achievement(models.Model):
+    title = models.CharField(
+        max_length=50,
+        unique=True
+    )
+    image = models.ImageField(
+        upload_to="achievement_images/"
+    )
+    conditions = models.JSONField(
+        default=list
+    )
+
+    def clean(self):
+        """
+        Validates the 'conditions' field:
+        - Ensures that at least one condition is provided.
+        - Ensures that no condition is an empty string or contains only whitespace.
+        """
+        super().clean()
+        if self.conditions:
+            for condition in self.conditions:
+                if not condition or not condition.strip():
+                    raise ValidationError({"conditions": "Empty conditions are not allowed."})
+        else: raise ValidationError({"conditions": "A condition is required"})
+
+    def __str__(self):
+        return self.title
+
