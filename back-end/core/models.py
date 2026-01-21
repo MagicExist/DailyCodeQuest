@@ -40,6 +40,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         through='UserChallenge',
         related_name='users'
     )
+    achievements = models.ManyToManyField(
+        "Achievement",
+        through='UserAchievement',
+        related_name='users'
+    )
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
@@ -114,3 +119,11 @@ class UserChallenge(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.challenge.title}"
+
+class UserAchievement(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE)
+    unlocked_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.achievement.title}"
