@@ -1,0 +1,1 @@
+This project was created with the goal of gamifying daily coding practice, making it more engaging and enjoyable, and helping to ease the first contact with programming in a fun way.
