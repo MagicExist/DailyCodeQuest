@@ -1,0 +1,67 @@
+# ==========================
+# Python
+# ==========================
+
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+*.pyo
+*.pyd
+*.pyc
+*.cover
+*.coverage
+*.cache
+*.hypothesis/
+pip-log.txt
+
+# ==========================
+# Virtual Environments
+# ==========================
+venv/
+env/
+ENV/
+.env/
+.venv/
+
+# ==========================
+# Django
+# ==========================
+*.sqlite3
+*.log
+db.sqlite3
+*.pot
+*.pyc
+*.mo
+*.cover
+*.diff
+
+# Ignore local migrations if you want (optional)
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# Media and uploaded files
+media/
+
+# Static files collected
+staticfiles/
+
+# ==========================
+# Environment & Secrets
+# ==========================
+.env
+.env.*
+
+# ==========================
+# IDE / Editor
+# ==========================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ==========================
+# OS specific
+# ==========================
+.DS_Store
+Thumbs.db
