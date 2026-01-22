@@ -6,3 +6,8 @@ class ChallengeSerializer(serializers.Serializer):
         model = Challenge
         fields = '__all__'
 
+class AchievementSerializer(serializers.Serializer):
+    class Meta:
+        model = Achievement
+        fields = '__all__'
+
