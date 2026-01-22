@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import Achievement,Challenge
+from .serializers import AchievementSerializer,ChallengeSerializer
 
-# Create your views here.
+class ChallengeViewSet(ModelViewSet):
+    queryset = Challenge.objects.all()
+    serializer_class = ChallengeSerializer
