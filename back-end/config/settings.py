@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'core'
+    'core',
+    'drf_spectacular'
 ]
 
 MIDDLEWARE = [
@@ -39,6 +40,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'DailyCodeQuestApi',
+    'DESCRIPTION': 'API documentation',
+    'VERSION': '1.0.0',
+}
 
 ROOT_URLCONF = 'config.urls'
 
