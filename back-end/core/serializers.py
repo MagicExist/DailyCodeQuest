@@ -21,7 +21,7 @@ class ChallengeSerializer(serializers.ModelSerializer):
         model = Challenge
         fields = '__all__'
 
-class AchievementSerializer(serializers.Serializer):
+class AchievementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Achievement
         fields = '__all__'
