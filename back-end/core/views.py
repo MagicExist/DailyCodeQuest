@@ -1,6 +1,11 @@
 from rest_framework.viewsets import ModelViewSet
-from .models import Achievement,Challenge
-from .serializers import AchievementSerializer,ChallengeSerializer
+from rest_framework.generics import ListCreateAPIView
+from .models import Achievement,Challenge,User
+from .serializers import AchievementSerializer,ChallengeSerializer,UserSerializer
+
+class UserViewSet(ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class ChallengeViewSet(ModelViewSet):
     queryset = Challenge.objects.all()
