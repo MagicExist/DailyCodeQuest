@@ -127,3 +127,17 @@ class UserAchievement(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.achievement.title}"
+
+class ShuffleChallenge(models.Model):
+    original_list = models.JSONField(default=list)
+    dynamic_list = models.JSONField(default=list)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class DailyChallenge(models.Model):
+    challenge = models.ForeignKey(
+        Challenge,
+        on_delete=models.CASCADE,
+        related_name="daily_challenges"
+    )
+    date = models.DateField(unique=True)
+    updated_at = models.DateTimeField(auto_now=True)
