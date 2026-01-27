@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'core',
-    'drf_spectacular'
+    'drf_spectacular',
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,4 @@ STATIC_URL = 'static/'
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
