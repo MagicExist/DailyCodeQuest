@@ -65,7 +65,17 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     'TITLE': 'DailyCodeQuestApi',
     'DESCRIPTION': 'API documentation',
-    'VERSION': '1.0.0',
+    'VERSION': '1.0.1',
+    "SECURITY": [{"BearerAuth": []}],
+    "COMPONENTS": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+            }
+        }
+    },
 }
 
 ROOT_URLCONF = 'config.urls'
