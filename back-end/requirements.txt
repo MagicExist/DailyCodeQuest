@@ -13,6 +13,7 @@ django-celery-beat==2.8.1
 django-environ==0.12.0
 django-timezone-field==7.2.1
 djangorestframework==3.16.1
+djangorestframework_simplejwt==5.5.1
 drf-spectacular==0.29.0
 inflection==0.5.1
 jsonschema==4.26.0
@@ -22,6 +23,7 @@ packaging==26.0
 pillow==12.1.0
 prompt_toolkit==3.0.52
 psycopg2-binary==2.9.11
+PyJWT==2.11.0
 python-crontab==3.3.0
 python-dateutil==2.9.0.post0
 PyYAML==6.0.3

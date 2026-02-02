@@ -1,3 +1,13 @@
+"""
+Main URL configuration for the project.
+
+This module routes:
+- Django admin panel
+- Core application API endpoints
+- API documentation (Swagger/OpenAPI)
+- JWT authentication endpoints (login & refresh)
+"""
+
 from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
@@ -6,13 +16,29 @@ from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
 )
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
+    # Django admin interface
     path('admin/', admin.site.urls),
-    path('api/',include('core.urls')),
 
-    path('api/schema/',SpectacularAPIView.as_view(), name='schema'),
-    path('api/docs/',SpectacularSwaggerView.as_view(url_name='schema'),name='swagger-ui')
+    # Main application API routes
+    path('api/', include('core.urls')),
+
+    # OpenAPI schema generation
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+
+    # Swagger UI documentation interface
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+
+    # Obtain JWT access + refresh tokens (login)
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+
+    # Refresh JWT access token using refresh token
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 if settings.DEBUG:
