@@ -5,7 +5,6 @@ import './App.css'
 
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import PrivateRoute from './routes/PrivateRoute'
-import Dashboard from './components/Dashboard'
 
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
           path='/'
           element={
             <PrivateRoute>
-              <Dashboard/>
             </PrivateRoute>
           }
         />
