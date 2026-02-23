@@ -31,6 +31,13 @@ SITE_ID = 1
 
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_UNIQUE_EMAIL = True
+
+# If you're not using django templates for auth pages:
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Application definition
 
@@ -85,6 +92,15 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {"access_type": "online"},
+    }
+}
+
+SOCIALACCOUNT_QUERY_EMAIL = True
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'DailyCodeQuestApi',
