@@ -8,7 +8,9 @@ click-didyoumean==0.3.1
 click-plugins==1.1.1.2
 click-repl==0.3.0
 cron_descriptor==2.0.6
+dj-rest-auth==7.1.1
 Django==5.2.10
+django-allauth==65.14.3
 django-celery-beat==2.8.1
 django-cors-headers==4.9.0
 django-environ==0.12.0
