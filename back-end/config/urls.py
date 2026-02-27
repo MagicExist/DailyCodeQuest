@@ -21,6 +21,8 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+from core.auth_views import GoogleLogin
+
 urlpatterns = [
     # Django admin interface
     path('admin/', admin.site.urls),
@@ -39,6 +41,10 @@ urlpatterns = [
 
     # Refresh JWT access token using refresh token
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    path("accounts/", include("allauth.urls")),
+
+    path("api/auth/google/", GoogleLogin.as_view(), name="google_login"),
 ]
 
 if settings.DEBUG:
