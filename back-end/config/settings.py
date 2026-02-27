@@ -27,14 +27,18 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
 
 AUTH_USER_MODEL = "core.User"
 
-SITE_ID = 1
+SITE_ID = 2
 
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = None
+JWT_AUTH_REFRESH_COOKIE = None
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_UNIQUE_EMAIL = True
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
 
 # If you're not using django templates for auth pages:
 ACCOUNT_EMAIL_VERIFICATION = "none"
@@ -75,6 +79,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_AUTH = {
+    "USE_JWT": True,
+
+    # do NOT store in cookies
+    "JWT_AUTH_COOKIE": None,
+    "JWT_AUTH_REFRESH_COOKIE": None,
+
+    # make sure tokens are returned in the body
+    "JWT_AUTH_HTTPONLY": False,
+}
 
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
