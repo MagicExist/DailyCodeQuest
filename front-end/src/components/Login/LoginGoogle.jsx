@@ -1,5 +1,5 @@
 import { useGoogleLogin } from "@react-oauth/google";
-import { loginGoogle } from "../api/auth/auth-google";
+import { loginGoogle } from "../../api/auth/auth-google";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginGoogle(){
