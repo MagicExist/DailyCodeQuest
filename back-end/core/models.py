@@ -55,8 +55,22 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-    
+
+class Tag(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(
+        max_length=40,
+        unique=True
+    )
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
 class Challenge(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(
         max_length=75,
         unique=True
@@ -67,6 +81,11 @@ class Challenge(models.Model):
     )
     conditions = models.JSONField(
         default=list,
+        blank=True
+    )
+    tags = models.ManyToManyField(
+        Tag,
+        related_name="challenges",
         blank=True
     )
     image = models.ImageField(upload_to="challenge_images/") 
