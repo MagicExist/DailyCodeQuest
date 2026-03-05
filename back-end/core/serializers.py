@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Challenge, Achievement, User, Tag
+from .models import Challenge, Achievement, User, Tag, DailyChallenge
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -31,3 +31,9 @@ class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = "__all__"
+
+class DailyChallengeSerializer(serializers.ModelSerializer):
+    challenge = ChallengeSerializer()
+    class Meta:
+        model = DailyChallenge
+        fields = ['challenge','date']
