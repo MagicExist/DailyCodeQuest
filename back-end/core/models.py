@@ -68,40 +68,7 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-
-class Challenge(models.Model):
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(
-        max_length=75,
-        unique=True
-    )
-    description = models.CharField(
-        max_length=500,
-        blank=True
-    )
-    conditions = models.JSONField(
-        default=list,
-        blank=True
-    )
-    tags = models.ManyToManyField(
-        Tag,
-        related_name="challenges",
-        blank=True
-    )
-    image = models.ImageField(upload_to="challenge_images/") 
-
-    def clean(self):
-        """
-            Validate conditions only if provided.
-            No empty strings allowed.
-        """
-        super().clean()
-        if self.conditions:
-            for condition in self.conditions:
-                if not condition or not condition.strip():
-                    raise ValidationError({"conditions": "Empty conditions are not allowed."})
-    def __str__(self):
-        return self.title
+    
 
 class Achievement(models.Model):
     title = models.CharField(
@@ -128,6 +95,45 @@ class Achievement(models.Model):
                     raise ValidationError({"conditions": "Empty conditions are not allowed."})
         else: raise ValidationError({"conditions": "A condition is required"})
 
+    def __str__(self):
+        return self.title
+
+class Challenge(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(
+        max_length=75,
+        unique=True
+    )
+    description = models.CharField(
+        max_length=500,
+        blank=True
+    )
+    conditions = models.JSONField(
+        default=list,
+        blank=True
+    )
+    tags = models.ManyToManyField(
+        Tag,
+        related_name="challenges",
+        blank=True
+    )
+    achievement = models.ManyToManyField(
+        Achievement,
+        related_name="challenges",
+        blank=True
+    )
+    image = models.ImageField(upload_to="challenge_images/") 
+
+    def clean(self):
+        """
+            Validate conditions only if provided.
+            No empty strings allowed.
+        """
+        super().clean()
+        if self.conditions:
+            for condition in self.conditions:
+                if not condition or not condition.strip():
+                    raise ValidationError({"conditions": "Empty conditions are not allowed."})
     def __str__(self):
         return self.title
 
