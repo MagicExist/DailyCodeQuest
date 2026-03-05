@@ -16,16 +16,16 @@ class UserSerializer(serializers.ModelSerializer):
         return user
     
 
-class ChallengeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Challenge
-        fields = '__all__'
-
 class AchievementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Achievement
         fields = '__all__'
 
+class ChallengeSerializer(serializers.ModelSerializer):
+    achievement = AchievementSerializer(many=True, read_only=True)
+    class Meta:
+        model = Challenge
+        fields = '__all__'
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
