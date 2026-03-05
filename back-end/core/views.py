@@ -1,11 +1,12 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.generics import ListCreateAPIView
-from .models import Achievement, Challenge, User, Tag
+from rest_framework.generics import ListCreateAPIView,ListAPIView
+from .models import Achievement, Challenge, User, Tag, DailyChallenge
 from .serializers import (
     AchievementSerializer,
     ChallengeSerializer,
     UserSerializer,
     TagSerializer,
+    DailyChallengeSerializer,
 )
 
 class UserViewSet(ListCreateAPIView):
@@ -25,3 +26,7 @@ class AchievementViewSet(ModelViewSet):
 class TagViewSet(ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
+class DailyChallengeView(ListAPIView):
+    queryset = DailyChallenge.objects.all()
+    serializer_class = DailyChallengeSerializer
