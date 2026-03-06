@@ -21,16 +21,18 @@ class AchievementSerializer(serializers.ModelSerializer):
         model = Achievement
         fields = '__all__'
 
-class ChallengeSerializer(serializers.ModelSerializer):
-    achievement = AchievementSerializer(many=True, read_only=True)
-    class Meta:
-        model = Challenge
-        fields = '__all__'
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = "__all__"
+
+class ChallengeSerializer(serializers.ModelSerializer):
+    achievement = AchievementSerializer(many=True, read_only=True)
+    tags = TagSerializer(many=True, read_only=True)
+    class Meta:
+        model = Challenge
+        fields = '__all__'
 
 class DailyChallengeSerializer(serializers.ModelSerializer):
     challenge = ChallengeSerializer()
